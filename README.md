@@ -29,7 +29,7 @@ When I receive a packet I check what type it is (IP OR ARP)
              I send the package back
               I used this format for ICMP reply even if ttl is less than 1 and if I don't find a next hop
 
-         If the package needs to be forwarded:
+If the package needs to be forwarded:
              I check the checksum and drop it if it is wrong
              I check the ttl and drop it if it is less than 2
              I am looking for the address for the next hop (if not found, I send an ICMP reply)
@@ -43,7 +43,7 @@ When I receive a packet I check what type it is (IP OR ARP)
                      I put the structures in buff and sent them on
              if there is a mac address for the next hop, I update the ethernet header and the interface
     
-     If it is of ARP type:
+If it is of ARP type:
          I take a pointer for each structure
          if it is reply type:
              I check if it is for the router, otherwise I drop it
@@ -53,7 +53,7 @@ When I receive a packet I check what type it is (IP OR ARP)
                   I use the function to extract the mac address of the next hop and update the ethernet structure
              if there is a package that does not yet have the mac address in the ARP table, I add it back to the queue and stop
 
-         if it is of arp request type:
+If it is of arp request type:
              if it is for the router, I create an arp reply
                  change the length of the package
                  I create a new buff in which I put the data from the old buff
